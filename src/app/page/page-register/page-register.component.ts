@@ -52,7 +52,7 @@ export class PageRegisterComponent implements OnInit {
       ));
       this.messageService.message('Account erstellt');
       // TODO: Authtoken erstellen
-
+      await firstValueFrom(this.accountService.authenticate(values.email,values.password));
 
       this.router.navigate(['']);
     }
