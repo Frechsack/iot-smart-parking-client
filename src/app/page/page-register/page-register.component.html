@@ -1,0 +1,13 @@
+
+
+  <mat-card>
+    <mat-card-title>Registrieren</mat-card-title>
+    <mat-card-content>
+      <app-register [formGroup]="formGroup">
+      </app-register>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-stroked-button color="primary" (click)="register()">Erstellen</button>
+      <button mat-stroked-button (click)="cancel()">Abbrechen</button>
+    </mat-card-actions>
+  </mat-card>

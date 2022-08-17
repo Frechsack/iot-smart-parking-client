@@ -28,7 +28,9 @@ export class AccountService {
 
   public authenticate(email: string, password: string): Observable<string> {
     return this.client.post<string>(`${environment.backendUrl}/accounts/${email}/authenticate`,{}, { params: { password: password }});
-  }
+
+    // Speichern als Cookie
+ }
 
   public getPayments(email: string, plate: string, page?: number, pageSize?: number): Observable<PaymentDto[]>{
     let param = new HttpParams();
