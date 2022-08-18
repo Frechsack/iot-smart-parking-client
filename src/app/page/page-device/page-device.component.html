@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-12 col-lg-6 col-md-4" *ngFor="let device of devices">
+    <mat-card>
+      <app-device-overview [device]="device">
+      </app-device-overview>
+    </mat-card>
+  </div>
+</div>

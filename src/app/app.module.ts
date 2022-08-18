@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeviceInstructionOverviewComponent } from './component/device-instruction-overview/device-instruction-overview.component';
 import { MatTableModule } from '@angular/material/table';
 import { DeviceStatusOverviewComponent } from './component/device-status-overview/device-status-overview.component';
+import { PageDeviceComponent } from './page/page-device/page-device.component';
 
 
 
@@ -40,7 +41,8 @@ import { DeviceStatusOverviewComponent } from './component/device-status-overvie
     ParkingLotOverviewComponent,
     PageLogInComponent,
     DeviceInstructionOverviewComponent,
-    DeviceStatusOverviewComponent
+    DeviceStatusOverviewComponent,
+    PageDeviceComponent
   ],
   imports: [
     BrowserModule,

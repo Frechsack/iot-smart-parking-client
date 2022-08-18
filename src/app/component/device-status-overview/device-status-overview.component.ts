@@ -46,7 +46,6 @@ export class DeviceStatusOverviewComponent implements OnInit {
       const status = await firstValueFrom(this.deviceService.getStatus(this.mac,this.paginationPage, this.paginationPageSize));
       this.status = status;
       this.dataSource.next(status.data);
-      console.log(this.status.data);
     }
     catch (error) {
       // Nicht eingeloggt

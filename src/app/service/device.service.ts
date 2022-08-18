@@ -17,7 +17,7 @@ export class DeviceService {
   ) { }
 
   public get(mac: string): Observable<DeviceDto>{
-    return this.client.get(`${environment.production}/devices/${mac}`).pipe(
+    return this.client.get(`${environment.backendUrl}/devices/${mac}`).pipe(
       map(it => DeviceDto.from(it))
     );
   }
@@ -26,7 +26,7 @@ export class DeviceService {
     let param = new HttpParams();
     if(page) param = param.set('page', page);
     if(pageSize) param = param.set('pageSize', pageSize);
-    return this.client.get<PaginationDto<DeviceDto>>(`${environment.backendUrl}/devices/`,{ params: param }).pipe(
+    return this.client.get<PaginationDto<DeviceDto>>(`${environment.backendUrl}/devices`,{ params: param }).pipe(
           map(it => new PaginationDto(it.count, it.data.map(it => DeviceDto.from(it))))
     );
   }

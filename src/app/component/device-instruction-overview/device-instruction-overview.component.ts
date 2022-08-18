@@ -46,7 +46,6 @@ export class DeviceInstructionOverviewComponent implements OnInit {
       const instructions = await firstValueFrom(this.deviceService.getInstructions(this.mac,this.paginationPage, this.paginationPageSize));
       this.instructions = instructions;
       this.dataSource.next(instructions.data);
-      console.log(this.instructions.data);
     }
     catch (error) {
       // Nicht eingeloggt
