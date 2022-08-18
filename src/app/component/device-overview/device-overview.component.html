@@ -1,0 +1,12 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>Anweisungen</mat-expansion-panel-header>
+    <app-device-instruction-overview [mac]="mac">
+    </app-device-instruction-overview>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>Status</mat-expansion-panel-header>
+      <app-device-status-overview [mac]="mac">
+      </app-device-status-overview>
+  </mat-expansion-panel>
+</mat-accordion>

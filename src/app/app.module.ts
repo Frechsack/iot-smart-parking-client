@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +14,19 @@ import { PageRegisterComponent } from './page/page-register/page-register.compon
 import { RegisterComponent } from './component/register/register.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HomeComponent } from './page/home/home.component';
+import { DeviceOverviewComponent } from './component/device-overview/device-overview.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ParkingLotOverviewComponent } from './component/parking-lot-overview/parking-lot-overview.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AuthenticationInterceptor } from './interceptor/authentication-interceptor';
+import { PageLogInComponent } from './page/page-log-in/page-log-in.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { DeviceInstructionOverviewComponent } from './component/device-instruction-overview/device-instruction-overview.component';
+import { MatTableModule } from '@angular/material/table';
+import { DeviceStatusOverviewComponent } from './component/device-status-overview/device-status-overview.component';
+
 
 
 @NgModule({
@@ -21,7 +34,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppComponent,
     RegisterComponent,
     LogInComponent,
-    PageRegisterComponent
+    PageRegisterComponent,
+    HomeComponent,
+    DeviceOverviewComponent,
+    ParkingLotOverviewComponent,
+    PageLogInComponent,
+    DeviceInstructionOverviewComponent,
+    DeviceStatusOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +53,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
-  providers: [LogInComponent],
+  providers: [
+    LogInComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

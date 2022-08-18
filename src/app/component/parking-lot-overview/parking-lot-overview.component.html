@@ -1,0 +1,41 @@
+
+  <mat-expansion-panel [disabled]="devicesMacs.length === 0">
+     <mat-expansion-panel-header>
+       <mat-panel-title>
+         <div *ngTemplateOutlet="headline">
+         </div>
+       </mat-panel-title>
+     </mat-expansion-panel-header>
+     <mat-accordion multi *ngIf="devicesMacs.length > 0">
+       <mat-expansion-panel *ngFor="let deviceMac of devicesMacs">
+         <mat-expansion-panel-header>
+           <mat-panel-title>
+             {{ deviceMac }}
+           </mat-panel-title>
+         </mat-expansion-panel-header>
+         <ng-template matExpansionPanelContent>
+           <app-device-overview [mac]="deviceMac">
+           </app-device-overview>
+        </ng-template>
+       </mat-expansion-panel>
+     </mat-accordion>
+  </mat-expansion-panel>
+
+
+<ng-template #headline>
+<div class="row justify-content-between align-items-center align-text-center" style="width: 100%">
+  <div class="col-auto">
+    <h3 class="my-auto">{{ parkingLot.nr }}</h3>
+  </div>
+  <div class="col-auto">
+    <mat-chip-list>
+      <mat-chip color="primary" *ngIf="parkingLot.isAvailable">
+        Verfügbar
+      </mat-chip>
+      <mat-chip color="accent" *ngIf="!parkingLot.isAvailable">
+        Belegt
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+</ng-template>

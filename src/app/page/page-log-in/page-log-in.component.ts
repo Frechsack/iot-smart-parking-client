@@ -6,13 +6,13 @@ import { AccountService } from 'src/app/service/account.service';
 import { MessageService } from 'src/app/service/message.service';
 
 @Component({
-  selector: 'app-page-register',
-  templateUrl: './page-register.component.html',
-  styleUrls: ['./page-register.component.css']
+  selector: 'app-page-log-in',
+  templateUrl: './page-log-in.component.html',
+  styleUrls: ['./page-log-in.component.css']
 })
-export class PageRegisterComponent implements OnInit {
+export class PageLogInComponent implements OnInit {
 
-  public readonly formGroup: FormGroup ;
+  public readonly formGroup: FormGroup;
 
   constructor(
     readonly fb: FormBuilder,
@@ -23,46 +23,34 @@ export class PageRegisterComponent implements OnInit {
     this.formGroup = fb.group({
       email: fb.control('',Validators.required),
       password: fb.control('',Validators.required),
-      firstname: fb.control('',Validators.required),
-      lastname: fb.control('',Validators.required),
-      street: fb.control('',Validators.required),
-      streetNr: fb.control('',Validators.required),
-      zip: fb.control('',Validators.required),
-    })
+    });
   }
 
   ngOnInit(): void {
   }
 
-  public async register(){
+  public async cancel(){
+    this.router.navigate(['']);
+  }
+
+  public async login(){
     this.formGroup.markAllAsTouched();
     if(this.formGroup.invalid) return;
 
     const values = this.formGroup.value;
 
     try {
-      await firstValueFrom(this.accountService.registerAccount(
+      await firstValueFrom(this.accountService.authenticate(
         values.email,
-        values.password,
-        values.firstname,
-        values.lastname,
-        values.zip,
-        values.street,
-        values.streetNr,
+        values.password
       ));
-      this.messageService.message('Account erstellt');
-  
-      await firstValueFrom(this.accountService.authenticate(values.email,values.password));
-
-      this.router.navigate(['']);
+      this.messageService.message('Account angemeldet');
+      this.router.navigate(['/']);
     }
     catch (error: any) {
+      console.log(error);
        this.messageService.error(error.error.message,error.error.status);
     }
-  }
-
-  public async cancel(){
-    this.router.navigate(['']);
   }
 
 }

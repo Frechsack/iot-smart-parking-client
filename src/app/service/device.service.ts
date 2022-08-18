@@ -5,6 +5,7 @@ import { DeviceDto } from '../dto/device-dto';
 import { environment } from '../../environments/environment';
 import { DeviceStatusDto } from '../dto/device-status-dto';
 import { DeviceInstructionDto } from '../dto/device-instruction-dto';
+import { PaginationDto } from '../dto/pagination-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,30 +22,30 @@ export class DeviceService {
     );
   }
 
-  public getAll(page?: number, pageSize?: number): Observable<DeviceDto[]>{
+  public getAll(page?: number, pageSize?: number): Observable<PaginationDto<DeviceDto>>{
     let param = new HttpParams();
     if(page) param = param.set('page', page);
     if(pageSize) param = param.set('pageSize', pageSize);
-    return this.client.get<DeviceDto[]>(`${environment.production}/devices/`,{ params: param }).pipe(
-      map(it => it.map(it => DeviceDto.from(it)))
+    return this.client.get<PaginationDto<DeviceDto>>(`${environment.backendUrl}/devices/`,{ params: param }).pipe(
+          map(it => new PaginationDto(it.count, it.data.map(it => DeviceDto.from(it))))
     );
   }
 
-  public getStatus(mac: string, page?: number, pageSize?: number): Observable<DeviceStatusDto[]>{
+  public getStatus(mac: string, page?: number, pageSize?: number): Observable<PaginationDto<DeviceStatusDto>>{
     let param = new HttpParams();
     if(page) param = param.set('page', page);
     if(pageSize) param = param.set('pageSize', pageSize);
-    return this.client.get<DeviceStatusDto[]>(`${environment.production}/devices/${mac}`,{ params: param }).pipe(
-      map(it => it.map(it => DeviceStatusDto.from(it)))
+    return this.client.get<PaginationDto<DeviceStatusDto>>(`${environment.backendUrl}/devices/${mac}/status`,{ params: param }).pipe(
+        map(it => new PaginationDto(it.count, it.data.map(it => DeviceStatusDto.from(it))))
     );
   }
 
-  public getInstructions(mac: string, page?: number, pageSize?: number): Observable<DeviceInstructionDto[]>{
+  public getInstructions(mac: string, page?: number, pageSize?: number): Observable<PaginationDto<DeviceInstructionDto>>{
     let param = new HttpParams();
     if(page) param = param.set('page', page);
     if(pageSize) param = param.set('pageSize', pageSize);
-    return this.client.get<DeviceInstructionDto[]>(`${environment.production}/devices/${mac}`,{ params: param }).pipe(
-      map(it => it.map(it => DeviceInstructionDto.from(it)))
+    return this.client.get<PaginationDto<DeviceInstructionDto>>(`${environment.backendUrl}/devices/${mac}/instructions`,{ params: param }).pipe(
+          map(it => new PaginationDto(it.count, it.data.map(it => DeviceInstructionDto.from(it))))
     );
   }
 }

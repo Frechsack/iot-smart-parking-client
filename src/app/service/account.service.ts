@@ -1,9 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AccountDto } from '../dto/account-dto';
+import { PaginationDto } from '../dto/pagination-dto';
 import { PaymentDto } from '../dto/payment-dto';
+
+export const AUTHENTICATION_TOKEN_NAME = 'bearer';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,8 @@ import { PaymentDto } from '../dto/payment-dto';
 export class AccountService {
 
   constructor(
-    private readonly client: HttpClient
+    private readonly client: HttpClient,
+    private readonly cookieService: CookieService
   ) { }
 
   public addPlate(email: string, plate: string): Observable<void> {
@@ -27,17 +32,16 @@ export class AccountService {
   }
 
   public authenticate(email: string, password: string): Observable<string> {
-    return this.client.post<string>(`${environment.backendUrl}/accounts/${email}/authenticate`,{}, { params: { password: password }});
-
-    // Speichern als Cookie
+    return this.client.post(`${environment.backendUrl}/accounts/${email}/authenticate`,{}, { params: { password: password }, responseType: 'text'})
+    .pipe(tap(it => this.cookieService.set(AUTHENTICATION_TOKEN_NAME,it)));
  }
 
-  public getPayments(email: string, plate: string, page?: number, pageSize?: number): Observable<PaymentDto[]>{
+  public getPayments(email: string, plate: string, page?: number, pageSize?: number): Observable<PaginationDto<PaymentDto>>{
     let param = new HttpParams();
     if(page) param = param.set('page', page);
     if(pageSize) param = param.set('pageSize', pageSize);
-    return this.client.get<PaymentDto[]>(`${environment.backendUrl}/accounts/${email}/plates/${plate}` , { params: param }).pipe(
-      map(it => it.map(it => PaymentDto.from(it)))
+    return this.client.get<PaginationDto<PaymentDto>>(`${environment.backendUrl}/accounts/${email}/plates/${plate}` , { params: param }).pipe(
+      map(it => new PaginationDto(it.count, it.data.map(it => PaymentDto.from(it))))
     );
   }
 

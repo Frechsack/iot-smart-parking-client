@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col" *ngFor="let parkingLot of parkingLots">
+      <app-parking-lot-overview [parkingLot]="parkingLot">
+      </app-parking-lot-overview>
+    </div>
+  </div>
+</div>
