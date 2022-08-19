@@ -24,7 +24,7 @@ export class ParkingLotOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateDevices();
-    timer(10000).subscribe(async () => this.updateDevices());
+    timer(0,30000).subscribe(async () => this.updateDevices());
   }
 
   private async updateDevices(){

@@ -32,7 +32,7 @@ export class DeviceInstructionOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateInstructions();
-    timer(5000).subscribe(async () => this.updateInstructions());
+    timer(0,5000).subscribe(async () => this.updateInstructions());
   }
 
   public async paginationChange(event: PageEvent){

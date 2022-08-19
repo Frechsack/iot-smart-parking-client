@@ -1,13 +1,13 @@
-<div class="container">
-  <div class="row mt-3">
+
+  <div class="row mt-3 mx-0">
     <div class="col">
       <mat-card>
         <mat-card-header>
           <mat-card-title>Parkplätze</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="px-3">
           <div class="row">
-            <div class="col" *ngFor="let parkingLot of parkingLots">
+            <div class="pt-3 col-12 col-lg-6 col-xl-4" *ngFor="let parkingLot of parkingLots">
               <app-parking-lot-overview [parkingLot]="parkingLot">
               </app-parking-lot-overview>
             </div>
@@ -17,13 +17,13 @@
     </div>
   </div>
 
-  <div class="row mt-3">
+  <div class="row mt-3 mx-0">
     <div class="col">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Meine Kennzeichen</mat-card-title>
+          <mat-card-title>Rechnungsübersicht</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="px-3">
           <mat-accordion>
             <mat-expansion-panel *ngFor="let plate of plates">
               <mat-expansion-panel-header>
@@ -39,4 +39,3 @@
       </mat-card>
     </div>
   </div>
-</div>

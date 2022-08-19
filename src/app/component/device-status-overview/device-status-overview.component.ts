@@ -32,7 +32,7 @@ export class DeviceStatusOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateStatus();
-    timer(5000).subscribe(async () => this.updateStatus());
+    timer(0,5000).subscribe(async () => this.updateStatus());
   }
 
   public async paginationChange(event: PageEvent){

@@ -34,7 +34,7 @@ export class PaymentOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.updatePayments();
-    timer(5000).subscribe(async () => this.updatePayments());
+    timer(0,10000).subscribe(async () => this.updatePayments());
   }
 
   public async paginationChange(event: PageEvent){
