@@ -27,6 +27,7 @@ import { DeviceInstructionOverviewComponent } from './component/device-instructi
 import { MatTableModule } from '@angular/material/table';
 import { DeviceStatusOverviewComponent } from './component/device-status-overview/device-status-overview.component';
 import { PageDeviceComponent } from './page/page-device/page-device.component';
+import { PaymentOverviewComponent } from './component/payment-overview/payment-overview.component';
 
 
 
@@ -42,7 +43,8 @@ import { PageDeviceComponent } from './page/page-device/page-device.component';
     PageLogInComponent,
     DeviceInstructionOverviewComponent,
     DeviceStatusOverviewComponent,
-    PageDeviceComponent
+    PageDeviceComponent,
+    PaymentOverviewComponent
   ],
   imports: [
     BrowserModule,

@@ -40,7 +40,7 @@ export class AccountService {
     let param = new HttpParams();
     if(page) param = param.set('page', page);
     if(pageSize) param = param.set('pageSize', pageSize);
-    return this.client.get<PaginationDto<PaymentDto>>(`${environment.backendUrl}/accounts/${email}/plates/${plate}` , { params: param }).pipe(
+    return this.client.get<PaginationDto<PaymentDto>>(`${environment.backendUrl}/accounts/${email}/plates/${plate}/payments` , { params: param }).pipe(
       map(it => new PaginationDto(it.count, it.data.map(it => PaymentDto.from(it))))
     );
   }

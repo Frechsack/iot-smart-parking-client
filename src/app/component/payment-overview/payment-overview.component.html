@@ -1,0 +1,33 @@
+<div class="row" *ngIf="displayPlate">
+  <div class="col-12">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Nummernschild</mat-label>
+      <input matInput readonly type="text" [value]="plate">
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <table mat-table [dataSource]="dataSource" style="width: 100%">
+      <ng-container matColumnDef="from">
+        <th mat-header-cell *matHeaderCellDef>Von</th>
+        <td mat-cell *matCellDef="let row">{{row.from}}</td>
+      </ng-container>
+      <ng-container matColumnDef="to">
+        <th mat-header-cell *matHeaderCellDef>Bis</th>
+        <td mat-cell *matCellDef="let row">{{row.to}}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Preis</th>
+        <td mat-cell *matCellDef="let row">{{row.price}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="payments.count"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="paginationChange($event)"
+                 aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>
