@@ -26,7 +26,7 @@ export class AccountService {
   }
 
   public removePlate(email: string, plate: string): Observable<void> {
-    return this.client.delete(`${environment.backendUrl}/accounts/${email}/plates` , { params: { plate: plate }}).pipe(
+    return this.client.delete(`${environment.backendUrl}/accounts/${email}/plates/${plate}`).pipe(
       map(() => {})
     );
   }

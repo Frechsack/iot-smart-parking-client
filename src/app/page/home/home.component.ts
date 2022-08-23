@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { firstValueFrom, timer } from 'rxjs';
+import { first, firstValueFrom, timer } from 'rxjs';
 import { ParkingLotDto } from 'src/app/dto/parking-lot-dto';
 import { AccountService } from 'src/app/service/account.service';
 import { ParkingLotService } from 'src/app/service/parking-lot.service';
+import { FormControl, Validators } from '@angular/forms';
+import { MessageService } from 'src/app/service/message.service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,10 +16,12 @@ export class HomeComponent implements OnInit {
 
   public parkingLots: ParkingLotDto[] = [];
   public plates: string[] = [];
+  public readonly licensePlateInput = new FormControl("", Validators.required);
 
   constructor(
     private readonly parkingLotService: ParkingLotService,
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
+    private  readonly messageService: MessageService
   ) {
 
   }
@@ -61,4 +66,39 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  public async addPlate(){
+    this.licensePlateInput.markAsTouched();
+    if (this.licensePlateInput.invalid)
+    {
+      this.messageService.error("Kennzeichen ungültig")
+      return;
+      
+    }
+    try{
+      let plate = this.licensePlateInput.value;
+      await firstValueFrom(this.accountService.addPlate("this", plate))
+      this.updatePlates();
+      this.messageService.message("Kennzeichen hinzugefügt")
+      }
+      
+    catch(error:any) {
+      this.messageService.error(error.error.message, error.error.status)
+    }
+
+  }
+
+  public async removePlate(plate:string){
+    if(!confirm("Wirklich löschen?")){
+      return;
+    }
+    try{
+      await firstValueFrom(this.accountService.removePlate("this", plate))
+      this.updatePlates();
+      this.messageService.message("Kennzeichen gelöscht")
+    }
+
+    catch(error:any) {
+      this.messageService.error(error.error.message, error.error.status)
+    }
+  }
 }
