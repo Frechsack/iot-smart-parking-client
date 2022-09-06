@@ -30,7 +30,7 @@ export class PageLogInComponent implements OnInit {
   }
 
   public async cancel(){
-    this.router.navigate(['']);
+    this.router.navigate(['start']);
   }
 
   public async login(){
@@ -45,12 +45,14 @@ export class PageLogInComponent implements OnInit {
         values.password
       ));
       this.messageService.message('Account angemeldet');
-      this.router.navigate(['/']);
+      this.router.navigate(['home']);
     }
     catch (error: any) {
       console.log(error);
        this.messageService.error(error.error.message,error.error.status);
+  
+  }
     }
   }
+  
 
-}

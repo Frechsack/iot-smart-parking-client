@@ -54,7 +54,7 @@ export class PageRegisterComponent implements OnInit {
   
       await firstValueFrom(this.accountService.authenticate(values.email,values.password));
 
-      this.router.navigate(['']);
+      this.router.navigate(['home']);
     }
     catch (error: any) {
        this.messageService.error(error.error.message,error.error.status);
@@ -62,7 +62,7 @@ export class PageRegisterComponent implements OnInit {
   }
 
   public async cancel(){
-    this.router.navigate(['']);
+    this.router.navigate(['start']);
   }
 
 }
