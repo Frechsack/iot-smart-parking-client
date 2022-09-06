@@ -30,7 +30,7 @@ export class PageLogInComponent implements OnInit {
   }
 
   public async cancel(){
-    this.router.navigate(['start']);
+    this.router.navigate(['home']);
   }
 
   public async login(){
