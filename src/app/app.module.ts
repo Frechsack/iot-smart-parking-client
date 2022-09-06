@@ -28,7 +28,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DeviceStatusOverviewComponent } from './component/device-status-overview/device-status-overview.component';
 import { PageDeviceComponent } from './page/page-device/page-device.component';
 import { PaymentOverviewComponent } from './component/payment-overview/payment-overview.component';
-import { StartComponent } from './page/start/start.component';
+
 
 
 
@@ -46,7 +46,6 @@ import { StartComponent } from './page/start/start.component';
     DeviceStatusOverviewComponent,
     PageDeviceComponent,
     PaymentOverviewComponent,
-    StartComponent
   ],
   imports: [
     BrowserModule,

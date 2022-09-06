@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
     <span>Iot-Smart-Parking-Client</span> 
-  <button (click)="navigateTo('start')" style="padding: 0.6em; margin-top: 0.2em; float: right; margin-left: 5em;" mat-stroked-button>Zurück zum Start</button> 
+  <button (click)="navigateTo('register')" style="padding: 0.6em; margin-top: 1em; margin-left: 4em; margin-bottom: 1em;" mat-stroked-button>Registrieren</button> 
+  <button (click)="navigateTo('login')" style="padding: 0.6em; margin-top: 1em; margin-left: 4em; margin-bottom: 1em;" mat-stroked-button>Anmelden</button>
+  <button (click)="navigateTo('home')" style="padding: 0.6em; margin-top: 1em; margin-left: 4em; margin-bottom: 1em;" mat-stroked-button>Home</button> 
+  <button (click)="navigateTo('devices')" style="padding: 0.6em; margin-top: 1em; margin-left: 4em; margin-bottom: 1em;" mat-stroked-button>Geräte</button> 
+
   </mat-toolbar>
 <router-outlet></router-outlet>
