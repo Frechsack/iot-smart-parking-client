@@ -29,10 +29,10 @@
   </div>
   <div class="col-auto">
     <mat-chip-list>
-      <mat-chip color="primary" *ngIf="!parkingLot.isAvailable">
+      <mat-chip color="primary" *ngIf="parkingLot.isAvailable">
         Verfügbar
       </mat-chip>
-      <mat-chip color="warn" *ngIf="parkingLot.isAvailable">
+      <mat-chip color="warn" *ngIf="!parkingLot.isAvailable">
         Belegt
       </mat-chip>
     </mat-chip-list>
