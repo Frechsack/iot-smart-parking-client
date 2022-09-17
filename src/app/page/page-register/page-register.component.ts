@@ -34,6 +34,10 @@ export class PageRegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public navigateTo(value: any) {
+    this.router.navigate([value]);
+  }
+
   public async register(){
     this.formGroup.markAllAsTouched();
     if(this.formGroup.invalid) return;
@@ -51,7 +55,7 @@ export class PageRegisterComponent implements OnInit {
         values.streetNr,
       ));
       this.messageService.message('Account erstellt');
-  
+
       await firstValueFrom(this.accountService.authenticate(values.email,values.password));
 
       this.router.navigate(['home']);

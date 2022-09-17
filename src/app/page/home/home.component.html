@@ -1,56 +1,72 @@
+<mat-toolbar color="primary">
+  <span>Iot-Smart-Parking-Client</span>
+  <span class="spacer"></span>
+  <button (click)="navigateTo('register')" mat-icon-button matTooltip="Registrieren">
+      <mat-icon>person_add</mat-icon>
+  </button>
+  <button (click)="navigateTo('login')" matTooltip="Login" mat-icon-button>
+    <mat-icon>login</mat-icon>
+  </button>
+</mat-toolbar>
 
-  <div class="row mt-3 mx-0">
-    <div class="col">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Parkplätze</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="px-3">
-          <div class="row">
-            <div class="pt-3 col-12 col-lg-6 col-xl-4" *ngFor="let parkingLot of parkingLots">
-              <app-parking-lot-overview [parkingLot]="parkingLot">
-              </app-parking-lot-overview>
+<div class="row justify-content-center mx-0">
+  <div class="col-12 col-lg-10">
+    <div class="row mt-3 mx-0">
+      <div class="col">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Parkplätze</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="px-3">
+            <div class="row">
+              <div class="pt-3 col-12 col-lg-6 col-xl-4" *ngFor="let parkingLot of parkingLots">
+                <app-parking-lot-overview [parkingLot]="parkingLot">
+                </app-parking-lot-overview>
+              </div>
             </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
-  </div>
 
-  <div class="row mt-3 mx-0">
-    <div class="col">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Rechnungsübersicht</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="px-3">
-          <mat-accordion>
-            <mat-expansion-panel *ngFor="let plate of plates">
-              <mat-expansion-panel-header>
-                <button (click)="removePlate(plate)"mat-icon-button style="margin-right: 1em;"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">delete</mat-icon></button>
-                <mat-panel-title>
-                  {{ plate }}
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <app-payment-overview [plate]="plate" [displayPlate]="false">
-              </app-payment-overview>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </mat-card-content>
-      </mat-card>
+    <div class="row mt-3 mx-0">
+      <div class="col">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Rechnungsübersicht</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="px-3">
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let plate of plates">
+                <mat-expansion-panel-header>
+                  <button (click)="removePlate(plate)" mat-icon-button matTooltip="Kennzeichen löschen" style="margin-right: 1em;">
+                    <mat-icon aria-hidden="false" aria-label="" >delete</mat-icon>
+                  </button>
+                  <mat-panel-title>
+                    {{ plate }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-payment-overview [plate]="plate" [displayPlate]="false">
+                </app-payment-overview>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
-  </div>
 
-  <div class="row mt-3 mx-0 justify-content-end">
-    <div class="col-auto">     
+    <div class="row mt-3 mx-0 justify-content-end">
+      <div class="col-auto">
         <mat-form-field appearance="outline">
           <mat-label>Kennzeichen</mat-label>
           <input matInput [formControl]="licensePlateInput">
+          <span matSuffix matTooltip="Kennzeichen hinzufügen">
+            <button (click)="addPlate()" style="padding: 0.6em; margin-top: 0.2em;" mat-icon-button>
+              <mat-icon>add</mat-icon>
+            </button>
+          </span>
         </mat-form-field>
-    </div>
-    <div class="col-auto">
-      <button (click)="addPlate()" style="padding: 0.6em; margin-top: 0.2em;" mat-stroked-button>Kennzeichen Hinzufügen</button>      
+      </div>
     </div>
   </div>
-
-  
+</div>

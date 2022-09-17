@@ -1,13 +1,25 @@
-
-
-  <mat-card>
-    <mat-card-title>Registrieren</mat-card-title>
-    <mat-card-content>
-      <app-register [formGroup]="formGroup">
-      </app-register>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-stroked-button color="primary" (click)="register()">Erstellen</button>
-      <button mat-stroked-button (click)="cancel()">Abbrechen</button>
-    </mat-card-actions>
-  </mat-card>
+<mat-toolbar color="primary">
+  <span>Iot-Smart-Parking-Client</span>
+  <span class="spacer"></span>
+  <button (click)="navigateTo('login')" matTooltip="Login" mat-icon-button>
+    <mat-icon>login</mat-icon>
+  </button>
+  <button (click)="navigateTo('home')" matTooltip="Startseite"  mat-icon-button>
+      <mat-icon>home</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="row justify-content-center m-3">
+  <div class="col-12 col-lg-10">
+    <mat-card>
+      <mat-card-title>Registrieren</mat-card-title>
+      <mat-card-content>
+        <app-register [formGroup]="formGroup">
+        </app-register>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-stroked-button color="primary" (click)="register()">Erstellen</button>
+        <button mat-stroked-button (click)="cancel()">Abbrechen</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

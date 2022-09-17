@@ -29,6 +29,10 @@ export class PageLogInComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public navigateTo(value: any) {
+    this.router.navigate([value]);
+  }
+
   public async cancel(){
     this.router.navigate(['home']);
   }
@@ -48,11 +52,11 @@ export class PageLogInComponent implements OnInit {
       this.router.navigate(['home']);
     }
     catch (error: any) {
-      console.log(error);
-       this.messageService.error(error.error.message,error.error.status);
-  
+      if(error.error.message === undefined)
+        this.messageService.error('E-Mail or password incorrect.');
+      else
+        this.messageService.error(error.error.message,error.error.status);
+
   }
     }
   }
-  
-

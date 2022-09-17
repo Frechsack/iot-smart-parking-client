@@ -26,9 +26,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeviceInstructionOverviewComponent } from './component/device-instruction-overview/device-instruction-overview.component';
 import { MatTableModule } from '@angular/material/table';
 import { DeviceStatusOverviewComponent } from './component/device-status-overview/device-status-overview.component';
-import { PageDeviceComponent } from './page/page-device/page-device.component';
 import { PaymentOverviewComponent } from './component/payment-overview/payment-overview.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -44,7 +43,6 @@ import { PaymentOverviewComponent } from './component/payment-overview/payment-o
     PageLogInComponent,
     DeviceInstructionOverviewComponent,
     DeviceStatusOverviewComponent,
-    PageDeviceComponent,
     PaymentOverviewComponent,
   ],
   imports: [
@@ -63,7 +61,8 @@ import { PaymentOverviewComponent } from './component/payment-overview/payment-o
     MatChipsModule,
     MatExpansionModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [
     LogInComponent,

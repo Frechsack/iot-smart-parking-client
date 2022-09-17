@@ -5,6 +5,7 @@ import { AccountService } from 'src/app/service/account.service';
 import { ParkingLotService } from 'src/app/service/parking-lot.service';
 import { FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/service/message.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private readonly parkingLotService: ParkingLotService,
     private readonly accountService: AccountService,
-    private  readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly router: Router
   ) {
 
   }
@@ -32,6 +34,11 @@ export class HomeComponent implements OnInit {
       this.updatePlates();
     };
     timer(0,10000).subscribe(async () => funUpdate());
+  }
+
+
+  public navigateTo(value: any) {
+    this.router.navigate([value]);
   }
 
   private async updatePlates(){
@@ -72,7 +79,7 @@ export class HomeComponent implements OnInit {
     {
       this.messageService.error("Kennzeichen ungültig")
       return;
-      
+
     }
     try{
       let plate = this.licensePlateInput.value;
@@ -80,7 +87,7 @@ export class HomeComponent implements OnInit {
       this.updatePlates();
       this.messageService.message("Kennzeichen hinzugefügt")
       }
-      
+
     catch(error:any) {
       this.messageService.error(error.error.message, error.error.status)
     }
