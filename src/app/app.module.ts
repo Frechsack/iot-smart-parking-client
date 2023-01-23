@@ -28,6 +28,8 @@ import { MatTableModule } from '@angular/material/table';
 import { DeviceStatusOverviewComponent } from './component/device-status-overview/device-status-overview.component';
 import { PaymentOverviewComponent } from './component/payment-overview/payment-overview.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OverwatchComponent } from './component/overwatch/overwatch.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -44,6 +46,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DeviceInstructionOverviewComponent,
     DeviceStatusOverviewComponent,
     PaymentOverviewComponent,
+    OverwatchComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatExpansionModule,
     MatPaginatorModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [
     LogInComponent,

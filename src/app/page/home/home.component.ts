@@ -6,6 +6,8 @@ import { ParkingLotService } from 'src/app/service/parking-lot.service';
 import { FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/service/message.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { OverwatchComponent } from 'src/app/component/overwatch/overwatch.component';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class HomeComponent implements OnInit {
     private readonly parkingLotService: ParkingLotService,
     private readonly accountService: AccountService,
     private readonly messageService: MessageService,
-    private readonly router: Router
+    private readonly router: Router,
+    private dialogRef: MatDialog
   ) {
 
   }
@@ -107,5 +110,9 @@ export class HomeComponent implements OnInit {
     catch(error:any) {
       this.messageService.error(error.error.message, error.error.status)
     }
+  }
+
+  public async showCam(){
+      this.dialogRef.open(OverwatchComponent);
   }
 }
