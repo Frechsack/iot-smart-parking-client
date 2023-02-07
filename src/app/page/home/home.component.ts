@@ -7,7 +7,10 @@ import { FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/service/message.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OverwatchComponent } from 'src/app/component/overwatch/overwatch.component';
+import { AccountDto } from 'src/app/dto/account-dto';
+import { WorkflowService } from 'src/app/service/workflow.service';
 
 
 @Component({
@@ -20,23 +23,33 @@ export class HomeComponent implements OnInit {
   public parkingLots: ParkingLotDto[] = [];
   public plates: string[] = [];
   public readonly licensePlateInput = new FormControl("", Validators.required);
+  public currentUser? : AccountDto;
 
   constructor(
     private readonly parkingLotService: ParkingLotService,
     private readonly accountService: AccountService,
     private readonly messageService: MessageService,
     private readonly router: Router,
-    private dialogRef: MatDialog
+    private readonly client: HttpClient,
+    private readonly http: HttpClient,
+    private readonly dialogRef: MatDialog,
+    private readonly workflowService:  WorkflowService,
   ) {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     const funUpdate = () => {
       this.updateParkingLots();
       this.updatePlates();
     };
     timer(0,10000).subscribe(async () => funUpdate());
+    try{
+          this.currentUser = await firstValueFrom(this.accountService.getAccount('this'));
+    }
+    catch{
+
+    }
   }
 
 
@@ -112,7 +125,34 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public async showCam(){
-      this.dialogRef.open(OverwatchComponent);
+  public get isAdmin():boolean{
+    return this.currentUser != undefined && this.currentUser.isAdmin;
+  }
+
+  public async showCam(){  
+    if (this.isAdmin)  
+    {
+      this.dialogRef.open(OverwatchComponent)
+    }
+    else {
+      this.messageService.error("Keine Berechtigung")
+    }      
+  }
+
+  public async initOverwatch(){
+    if (this.isAdmin)  
+    {
+      try {
+         await firstValueFrom(this.workflowService.initOverwatch());
+         this.messageService.message("Overwatch erfolgreich gestartet")
+      }
+      catch{
+        this.messageService.error("Overwatch start fehlgeschlagen")
+      }
+     
+    }
+    else {
+      this.messageService.error("Keine Berechtigung")
+    }
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { WorkflowService } from 'src/app/service/workflow.service';
 
 @Component({
   selector: 'app-overwatch',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverwatchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly client: HttpClient,
+    private readonly workflowService: WorkflowService,
+  ) { }
 
   ngOnInit(): void {
-    
+  }   
+  
+  public get imgUrl():string{
+    return this.workflowService.overwatchUrl;
   }
 }

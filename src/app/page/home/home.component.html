@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
   <span>Iot-Smart-Parking-Client</span>
   <span class="spacer"></span> 
-    <button (click)="showCam()" mat-raised-button matTooltip="Kameraansicht" style="margin-right: 3em;">AHHHHHHHHHHHH</button>  
+    <button *ngIf="this.isAdmin" (click)="showCam()" mat-raised-button matTooltip="Kameraansicht" style="margin-right: 3em;">Overwatch Anzeige</button>
+    <button *ngIf="this.isAdmin" (click)="initOverwatch()" mat-raised-button matTooltip="Initialisieren" style="margin-right: 3em;">Overwatch Initialisieren</button>   
   <button (click)="navigateTo('register')" mat-icon-button matTooltip="Registrieren">
       <mat-icon>person_add</mat-icon>
   </button>
