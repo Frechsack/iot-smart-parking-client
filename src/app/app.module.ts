@@ -30,6 +30,7 @@ import { PaymentOverviewComponent } from './component/payment-overview/payment-o
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverwatchComponent } from './component/overwatch/overwatch.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SecurePipe } from './pipe/secure.pipe';
 
 
 
@@ -47,6 +48,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     DeviceStatusOverviewComponent,
     PaymentOverviewComponent,
     OverwatchComponent,
+    SecurePipe,
   ],
   imports: [
     BrowserModule,
