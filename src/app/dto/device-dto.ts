@@ -11,7 +11,6 @@ export class DeviceDto {
     public readonly mac: string,
     public readonly type: DeviceTypeName,
     public readonly parkingLotNr?: number,
-    public readonly parentMac?: string
   ){
   }
 
@@ -20,7 +19,6 @@ export class DeviceDto {
       type.mac,
       type.type,
       type.parkingLotNr,
-      type.parentMac
     );
   }
 
